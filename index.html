@@ -68,7 +68,7 @@
     .wrap {
       max-width: 460px;
       margin: 0 auto;
-      padding: calc(env(safe-area-inset-top) + 22px) 18px calc(132px + env(safe-area-inset-bottom));
+      padding: calc(env(safe-area-inset-top) + 22px) 18px calc(44px + env(safe-area-inset-bottom));
       position: relative;
     }
 
@@ -1271,49 +1271,6 @@
       </div>
     </section>
 
-    <!-- RSVP -->
-    <section class="section rsvp-box" id="rsvpSection">
-      <div class="section-title">
-        <div class="kicker">RSVP</div>
-        <h2>참석 여부</h2>
-        <div class="dot-line" aria-hidden="true">
-          <svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>
-        </div>
-      </div>
-      <div class="quote-box">소중한 걸음이 닿을 수 있도록,
-참석 여부를 남겨주시면 감사하겠습니다.</div>
-      <div class="rsvp-grid">
-        <button class="btn btn-primary prank-trigger">기쁜 마음으로 참석하기</button>
-        <button class="btn btn-secondary prank-trigger">마음만 참석하기</button>
-      </div>
-      <div class="status-bar" id="statusBar">
-        <div class="status-icon">
-          <div class="spinner"></div>
-          <div class="check-badge">✓</div>
-        </div>
-        <div class="status-copy"><span id="statusMessage">참석 여부를 저장하는 중입니다. 잠시만 기다려주세요</span><span class="loading-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></div>
-      </div>
-      <div class="delivery-stage" id="deliveryStage">
-        <div class="envelope-scene" aria-hidden="true">
-          <div class="petal p1"></div>
-          <div class="petal p2"></div>
-          <div class="petal p3"></div>
-          <div class="envelope">
-            <div class="letter"></div>
-            <div class="flap"></div>
-          </div>
-        </div>
-        <div class="delivery-caption">예식장에 전달 중입니다</div>
-      </div>
-      <div class="reveal-card" id="revealCard">
-        <div class="chip">April Fools</div>
-        <h3 class="reveal-title">낚이셨죠? 😏</h3>
-        <p class="reveal-text">오늘은 4월 1일입니다 🙂
-설마 진짜일 거라고 믿으신 건 아니죠?
-참석 버튼까지 누르신 정성, 제가 다 봤습니다.</p>
-      </div>
-    </section>
-
     <section class="section" id="messageSection">
       <div class="section-title">
         <div class="kicker">Message</div>
@@ -1323,7 +1280,7 @@
         </div>
       </div>
       <div class="card">
-        <form class="message-form" id="guestbookForm" action="https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec" method="post" target="guestbook_iframe">
+        <form class="message-form" id="guestbookForm" action="https://script.google.com/macros/s/AKfycbxlZPmN_U61GO68YMBhw-LeD0-XU7mpppQ5zM0TYsR3Wxg6Rmep6T1fNOV4hfcpVRYY/exec" method="post" target="guestbook_iframe">
           <input type="hidden" name="sourcePage" value="wedding-invitation" />
           <input type="hidden" name="submittedAt" id="submittedAt" value="" />
           <div class="field-group">
@@ -1349,17 +1306,6 @@
         <span class="line"></span>
       </div>
       정성껏 읽어주셔서 감사합니다.
-    </div>
-  </div>
-
-  <div class="impact-flash" id="impactFlash"></div>
-  <div class="impact-burst" id="impactBurst" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <div class="sticky-bar">
-    <div class="sticky-inner">
-      <a class="btn btn-secondary" href="#rsvpSection">참석 여부 남기기</a>
     </div>
   </div>
 
