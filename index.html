@@ -68,7 +68,7 @@
     .wrap {
       max-width: 460px;
       margin: 0 auto;
-      padding: calc(env(safe-area-inset-top) + 22px) 18px calc(44px + env(safe-area-inset-bottom));
+      padding: calc(env(safe-area-inset-top) + 22px) 18px calc(112px + env(safe-area-inset-bottom));
       position: relative;
     }
 
@@ -909,6 +909,226 @@
       visibility: hidden;
     }
 
+    .confirm-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(42, 31, 24, 0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .28s ease, visibility .28s ease;
+      z-index: 138;
+    }
+
+    .confirm-overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .confirm-card {
+      width: min(100%, 300px);
+      padding: 28px 22px 24px;
+      border-radius: 28px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,252,247,0.98), rgba(248,240,232,0.98));
+      border: 1px solid rgba(184, 142, 106, 0.18);
+      box-shadow: 0 24px 54px rgba(96, 66, 47, 0.18);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(12px) scale(.97);
+      opacity: 0;
+    }
+
+    .confirm-overlay.show .confirm-card {
+      animation: modalImpact 0.82s cubic-bezier(.18,.89,.32,1.18) forwards;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .confirm-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.6), transparent 46%),
+        radial-gradient(circle at bottom right, rgba(195,150,134,0.14), transparent 34%);
+      pointer-events: none;
+    }
+
+    .confirm-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .confirm-spinner-wrap {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.92) 0%, rgba(255,248,241,0.74) 48%, rgba(184,142,106,0.10) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 10px 22px rgba(184,142,106,0.12);
+    }
+
+    .confirm-spinner {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(184, 142, 106, 0.18);
+      border-top-color: rgba(184, 142, 106, 0.95);
+      border-right-color: rgba(195, 150, 134, 0.72);
+      animation: spin 0.95s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(184,142,106,0.12));
+    }
+
+    .confirm-title {
+      margin: 0;
+      font-family: var(--serif-ko);
+      font-size: 25px;
+      font-weight: 500;
+      color: #7d5548;
+      letter-spacing: -0.02em;
+    }
+
+    .confirm-text {
+      margin: 10px 0 0;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .send-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(42, 31, 24, 0.28);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .28s ease, visibility .28s ease;
+      z-index: 140;
+    }
+
+    .send-overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .send-overlay-card {
+      width: min(100%, 360px);
+      padding: 26px 22px 22px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,252,247,0.98), rgba(248,240,232,0.98));
+      border: 1px solid rgba(184, 142, 106, 0.22);
+      box-shadow: 0 28px 64px rgba(96, 66, 47, 0.24);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transform: translateY(18px) scale(.96);
+      opacity: 0;
+    }
+
+    .send-overlay.show .send-overlay-card {
+      animation: modalImpact 0.9s cubic-bezier(.18,.89,.32,1.28) forwards;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .send-overlay-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.65), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(195,150,134,0.16), transparent 35%);
+      pointer-events: none;
+    }
+
+    .send-overlay-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .send-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(184, 142, 106, 0.14);
+      color: var(--gold-dark);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .send-chip::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d6b49e, #b88e6a);
+      box-shadow: 0 0 0 6px rgba(184, 142, 106, 0.10);
+      animation: pulseGlow 1.4s ease-in-out infinite;
+    }
+
+    .send-title {
+      margin: 18px 0 8px;
+      font-family: var(--serif-ko);
+      font-size: 28px;
+      font-weight: 500;
+      color: #7d5548;
+      letter-spacing: -0.02em;
+    }
+
+    .send-text {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.8;
+      min-height: 52px;
+    }
+
+    .send-progress {
+      width: 100%;
+      height: 9px;
+      margin-top: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(184, 142, 106, 0.14);
+      box-shadow: inset 0 1px 2px rgba(90, 78, 70, 0.08);
+    }
+
+    .send-progress-bar {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #d9b8a3 0%, #b88e6a 55%, #d8b29f 100%);
+      box-shadow: 0 2px 10px rgba(184, 142, 106, 0.22);
+      transition: width 2.8s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .send-overlay.show .send-progress-bar {
+      width: 100%;
+    }
+
     .footer {
       margin-top: 22px;
       text-align: center;
@@ -939,7 +1159,7 @@
       bottom: 0;
       z-index: 80;
       padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-      background: linear-gradient(180deg, rgba(246,239,231,0), rgba(246,239,231,0.94) 32%, rgba(246,239,231,0.99));
+      background: linear-gradient(180deg, rgba(246,239,231,0), rgba(246,239,231,0.9) 28%, rgba(246,239,231,0.98));
       backdrop-filter: blur(18px);
     }
     .sticky-inner {
@@ -948,6 +1168,89 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
+    }
+
+    .sticky-cta {
+      position: relative;
+      min-height: 56px;
+      padding: 14px 18px;
+      overflow: hidden;
+      border: 1px solid rgba(183, 144, 104, 0.42);
+      color: #6f5037;
+      background: linear-gradient(180deg, rgba(244, 228, 210, 0.98), rgba(233, 213, 192, 0.98));
+      box-shadow:
+        0 14px 28px rgba(117, 84, 55, 0.12),
+        inset 0 1px 0 rgba(255,255,255,0.50),
+        inset 0 -1px 0 rgba(150,112,78,0.12);
+      letter-spacing: 0.01em;
+      isolation: isolate;
+    }
+
+    .sticky-cta::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sticky-cta::after {
+      content: "";
+      position: absolute;
+      top: -35%;
+      left: -22%;
+      width: 34%;
+      height: 190%;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,249,240,0.42), rgba(255,255,255,0));
+      opacity: 0;
+      animation: stickyGlowSweep 7.2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sticky-cta .cta-inner {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .sticky-cta .cta-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(183,144,104,0.26);
+      background: rgba(255, 248, 240, 0.44);
+      color: #9b7352;
+      font-size: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.54);
+      flex: none;
+    }
+
+    .sticky-cta .cta-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    .sticky-cta:hover,
+    .sticky-cta:focus-visible {
+      transform: translateY(-1px);
+      box-shadow:
+        0 18px 32px rgba(117, 84, 55, 0.16),
+        inset 0 1px 0 rgba(255,255,255,0.58),
+        inset 0 -1px 0 rgba(150,112,78,0.14);
     }
 
     .toast {
@@ -1033,6 +1336,13 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes stickyGlowSweep {
+      0% { left: -24%; opacity: 0; }
+      10% { opacity: .08; }
+      20% { opacity: .22; }
+      34% { left: 108%; opacity: 0; }
+      100% { left: 108%; opacity: 0; }
+    }
     @keyframes dotPulse {
       0%, 20% { opacity: .2; }
       50% { opacity: 1; }
@@ -1291,13 +1601,18 @@
             <label class="field-label" for="congratsMessage">축하 메시지</label>
             <textarea class="field-textarea" id="congratsMessage" name="congratsMessage" maxlength="500" placeholder="축하 메시지를 남겨주세요" required></textarea>
           </div>
-          <div class="field-help">메시지를 남기면 구글 시트에 저장되고, 새 메시지 알림이 이메일로 전달되도록 연결할 수 있습니다.</div>
-          <button class="btn btn-primary" type="submit" id="guestbookSubmitBtn">메시지 전송하기</button>
+          <button class="btn btn-primary" type="submit" id="guestbookSubmitBtn">축하 메세지 전송하기</button>
           <div class="message-status info" id="messageStatus"></div>
         </form>
         <iframe name="guestbook_iframe" id="guestbook_iframe" class="hidden-frame"></iframe>
       </div>
     </section>
+
+    <div class="sticky-bar" aria-label="빠른 이동">
+      <div class="sticky-inner">
+        <a class="btn btn-primary sticky-cta" href="#messageSection" id="stickyMessageBtn"><span class="cta-inner"><span class="cta-icon" aria-hidden="true">✉</span><span class="cta-text">메세지 남기러 가기</span></span></a>
+      </div>
+    </div>
 
     <div class="footer">
       <div class="crest" aria-hidden="true">
@@ -1309,101 +1624,202 @@
     </div>
   </div>
 
-  <div class="modal" id="prankModal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="chip">April Fools</div>
-      <h3>앗, 잠깐!</h3>
-      <p>오늘은 4월 1일입니다 🙂
-설마 진짜일 거라고 믿으신 건 아니죠?
-참석 버튼까지 누르신 정성, 제가 다 봤습니다.</p>
-      <div class="modal-btns">
-        <button class="btn btn-primary" id="closeModalBtn" style="grid-column: 1 / -1;">여소해주기</button>
+    <div class="impact-flash" id="impactFlash"></div>
+  <div class="impact-burst" id="impactBurst" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="confirm-overlay" id="confirmOverlay" aria-hidden="true">
+    <div class="confirm-card" role="status" aria-live="polite">
+      <div class="confirm-spinner-wrap" aria-hidden="true">
+        <div class="confirm-spinner"></div>
+      </div>
+      <h3 class="confirm-title">작성된 메세지 확인 중</h3>
+      <p class="confirm-text" id="confirmOverlayText">작성해주신 메세지를 확인하고 있어요.<br />잠시만 기다려주세요.</p>
+    </div>
+  </div>
+
+  <div class="send-overlay" id="sendOverlay" aria-hidden="true">
+    <div class="send-overlay-card" id="sendOverlayCard" role="status" aria-live="polite">
+      <div class="send-chip">Sending Message</div>
+      <div class="envelope-scene" aria-hidden="true" style="margin: 18px auto 4px;">
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="letter"></div>
+        </div>
+        <div class="petal p1"></div>
+        <div class="petal p2"></div>
+        <div class="petal p3"></div>
+      </div>
+      <h3 class="send-title">메세지 전송 중</h3>
+      <p class="send-text" id="sendOverlayText">축하의 마음을 정성껏 담아 전달하고 있어요.<br />잠시만 기다려주세요.</p>
+      <div class="send-progress" aria-hidden="true">
+        <span class="send-progress-bar" id="sendProgressBar"></span>
       </div>
     </div>
   </div>
 
+<div class="modal" id="prankModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="chip">April Fools</div>
+      <h3>앗, 잠깐!</h3>
+      <p>축하 메세지까지 정성껏 보내주셨네요 🙂
+하지만 오늘은 4월 1일!
+아주 제대로 속아주신 겁니다.</p>
+      <div class="modal-btns">
+        <button class="btn btn-primary" id="closeModalBtn" style="grid-column: 1 / -1;">진짜 결혼할 수 있게 인연 한 분만 소개해주시는 건 어떤가요?</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
   <script>
-    const prankTriggers = document.querySelectorAll('.prank-trigger');
-    const revealCard = document.getElementById('revealCard');
-    const statusBar = document.getElementById('statusBar');
-    const prankModal = document.getElementById('prankModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const deliveryStage = document.getElementById('deliveryStage');
-    const statusMessage = document.getElementById('statusMessage');
-    const impactFlash = document.getElementById('impactFlash');
-    const impactBurst = document.getElementById('impactBurst');
     const guestbookForm = document.getElementById('guestbookForm');
     const guestbookSubmitBtn = document.getElementById('guestbookSubmitBtn');
     const messageStatus = document.getElementById('messageStatus');
     const submittedAt = document.getElementById('submittedAt');
-    let prankInProgress = false;
+    const guestbookIframe = document.getElementById('guestbook_iframe');
+    const impactFlash = document.getElementById('impactFlash');
+    const impactBurst = document.getElementById('impactBurst');
+    const confirmOverlay = document.getElementById('confirmOverlay');
+    const confirmOverlayText = document.getElementById('confirmOverlayText');
+    const sendOverlay = document.getElementById('sendOverlay');
+    const sendOverlayText = document.getElementById('sendOverlayText');
+    const sendProgressBar = document.getElementById('sendProgressBar');
+    const prankModal = document.getElementById('prankModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
 
-    function triggerImpact() {
-      impactFlash.classList.remove('active');
-      impactBurst.classList.remove('active');
-      revealCard.classList.remove('impact');
-      prankModal.classList.remove('impact');
-      void impactFlash.offsetWidth;
-      impactFlash.classList.add('active');
-      impactBurst.classList.add('active');
-      revealCard.classList.add('impact');
-      prankModal.classList.add('impact');
-      if (navigator.vibrate) {
-        navigator.vibrate([90, 50, 120]);
-      }
-      setTimeout(() => {
-        impactBurst.classList.remove('active');
-        revealCard.classList.remove('impact');
-        prankModal.classList.remove('impact');
-      }, 1300);
-    }
+    const SEND_PROGRESS_DURATION = 2800;
+    const SEND_POST_DELAY = 2000;
+    const SEND_TOTAL_DURATION = SEND_PROGRESS_DURATION + SEND_POST_DELAY;
+    const REQUEST_TIMEOUT_DURATION = 20000;
 
-    function setButtonsDisabled(disabled) {
-      prankTriggers.forEach((btn) => {
-        btn.disabled = disabled;
-        btn.style.opacity = disabled ? '0.72' : '1';
-        btn.style.pointerEvents = disabled ? 'none' : 'auto';
-      });
-    }
-
-    function openPrank() {
-      if (prankInProgress) return;
-      prankInProgress = true;
-      setButtonsDisabled(true);
-      prankModal.classList.remove('show');
-      prankModal.setAttribute('aria-hidden', 'true');
-      revealCard.classList.remove('show');
-      deliveryStage.classList.remove('show');
-      statusBar.classList.remove('complete');
-      statusMessage.textContent = '참석 여부를 저장하는 중입니다. 잠시만 기다려주세요';
-      statusBar.classList.add('show');
-
-      setTimeout(() => {
-        statusBar.classList.add('complete');
-        statusMessage.textContent = '참석 여부 저장 완료';
-      }, 2000);
-
-      setTimeout(() => {
-        statusBar.classList.remove('show');
-        deliveryStage.classList.add('show');
-      }, 4000);
-
-      setTimeout(() => {
-        deliveryStage.classList.remove('show');
-        revealCard.classList.add('show');
-        prankModal.classList.add('show');
-        prankModal.setAttribute('aria-hidden', 'false');
-        triggerImpact();
-        revealCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        prankInProgress = false;
-        setButtonsDisabled(false);
-      }, 8000);
-    }
+    let submitInProgress = false;
+    let iframeSubmissionArmed = false;
+    let textSwapTimer = null;
+    let revealTimer = null;
+    let requestTimeoutTimer = null;
 
     function setMessageStatus(type, text) {
       messageStatus.className = 'message-status show ' + type;
       messageStatus.textContent = text;
     }
+
+    function clearMessageStatus() {
+      messageStatus.className = 'message-status info';
+      messageStatus.textContent = '';
+    }
+
+    function triggerImpact() {
+      impactFlash.classList.remove('active');
+      impactBurst.classList.remove('active');
+      void impactFlash.offsetWidth;
+      impactFlash.classList.add('active');
+      impactBurst.classList.add('active');
+      if (navigator.vibrate) {
+        navigator.vibrate([80, 40, 120]);
+      }
+      setTimeout(() => impactBurst.classList.remove('active'), 1200);
+    }
+
+    function showConfirmOverlay() {
+      confirmOverlayText.innerHTML = '작성해주신 메세지를 확인하고 있어요.<br />잠시만 기다려주세요.';
+      confirmOverlay.classList.add('show');
+      confirmOverlay.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideConfirmOverlay() {
+      confirmOverlay.classList.remove('show');
+      confirmOverlay.setAttribute('aria-hidden', 'true');
+    }
+
+    function showSendOverlay() {
+      sendOverlay.classList.remove('show');
+      sendOverlay.setAttribute('aria-hidden', 'true');
+      sendProgressBar.style.width = '0';
+      void sendOverlay.offsetWidth;
+      sendOverlayText.innerHTML = '메세지 저장이 확인되었어요.<br />이제 정성껏 전송하고 있어요.';
+      sendOverlay.classList.add('show');
+      sendOverlay.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => {
+        sendProgressBar.style.width = '100%';
+      });
+      clearTimeout(textSwapTimer);
+      textSwapTimer = setTimeout(() => {
+        sendOverlayText.innerHTML = '메세지 전송이 완료되었어요.<br />잠시만 기다려주세요.';
+      }, SEND_PROGRESS_DURATION + 40);
+    }
+
+    function hideSendOverlay() {
+      sendOverlay.classList.remove('show');
+      sendOverlay.setAttribute('aria-hidden', 'true');
+      clearTimeout(textSwapTimer);
+    }
+
+    function setSubmitButtonDisabled(disabled) {
+      guestbookSubmitBtn.disabled = disabled;
+      guestbookSubmitBtn.style.opacity = disabled ? '0.72' : '1';
+      guestbookSubmitBtn.style.pointerEvents = disabled ? 'none' : 'auto';
+    }
+
+    function openPrankModal() {
+      prankModal.classList.add('show');
+      prankModal.setAttribute('aria-hidden', 'false');
+      triggerImpact();
+    }
+
+    function closePrankModal() {
+      prankModal.classList.remove('show');
+      prankModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function clearPendingTimers() {
+      clearTimeout(textSwapTimer);
+      clearTimeout(revealTimer);
+      clearTimeout(requestTimeoutTimer);
+    }
+
+    function finishSubmissionSuccess() {
+      if (!submitInProgress) return;
+      submitInProgress = false;
+      iframeSubmissionArmed = false;
+      clearPendingTimers();
+      setSubmitButtonDisabled(false);
+      hideConfirmOverlay();
+      hideSendOverlay();
+      guestbookForm.reset();
+      setMessageStatus('success', '당신이 보낸 메세지는 이미 잘 확인했습니다. 정말 결혼하는 날이 오면 그때 한 번 더 부탁드릴게요~');
+      setTimeout(openPrankModal, 140);
+    }
+
+    function finishSubmissionError(text) {
+      submitInProgress = false;
+      iframeSubmissionArmed = false;
+      clearPendingTimers();
+      setSubmitButtonDisabled(false);
+      hideConfirmOverlay();
+      hideSendOverlay();
+      setMessageStatus('error', text);
+    }
+
+    function startConfirmedRevealSequence() {
+      if (!submitInProgress) return;
+      hideConfirmOverlay();
+      triggerImpact();
+      showSendOverlay();
+      clearMessageStatus();
+      revealTimer = setTimeout(() => {
+        finishSubmissionSuccess();
+      }, SEND_TOTAL_DURATION);
+    }
+
+    guestbookIframe.addEventListener('load', () => {
+      if (!iframeSubmissionArmed || !submitInProgress) return;
+      iframeSubmissionArmed = false;
+      clearTimeout(requestTimeoutTimer);
+      startConfirmedRevealSequence();
+    });
 
     guestbookForm.addEventListener('submit', (event) => {
       const action = guestbookForm.getAttribute('action') || '';
@@ -1412,38 +1828,50 @@
 
       if (!name || !message) {
         event.preventDefault();
-        setMessageStatus('error', '성함과 축하 메시지를 모두 입력해주세요.');
+        setMessageStatus('error', '성함과 축하 메세지를 모두 입력해주세요.');
+        return;
+      }
+
+      if (submitInProgress) {
+        event.preventDefault();
+        setMessageStatus('info', '이전 메세지를 전송하는 중이에요. 잠시만 기다려주세요.');
         return;
       }
 
       if (action.includes('REPLACE_WITH_YOUR_DEPLOYMENT_ID')) {
         event.preventDefault();
-        setMessageStatus('error', '아직 구글 앱스 스크립트 웹앱 주소가 연결되지 않았어요. 아래 안내에 따라 action URL을 교체해주세요.');
+        setMessageStatus('error', '아직 구글 앱스 스크립트 웹앱 주소가 연결되지 않았어요. action URL을 실제 배포 주소로 교체해주세요.');
         return;
       }
 
+      event.preventDefault();
       submittedAt.value = new Date().toISOString();
-      guestbookSubmitBtn.disabled = true;
-      guestbookSubmitBtn.style.opacity = '0.72';
-      setMessageStatus('info', '메시지를 전송하고 있어요. 잠시만 기다려주세요...');
+      clearMessageStatus();
+      closePrankModal();
+      clearPendingTimers();
+      hideSendOverlay();
+      submitInProgress = true;
+      iframeSubmissionArmed = true;
+      setSubmitButtonDisabled(true);
+      showConfirmOverlay();
+
+      requestTimeoutTimer = setTimeout(() => {
+        finishSubmissionError('저장 완료 확인이 지연되고 있어요. 네트워크 상태를 확인한 뒤 다시 시도해주세요.');
+      }, REQUEST_TIMEOUT_DURATION);
 
       setTimeout(() => {
-        guestbookSubmitBtn.disabled = false;
-        guestbookSubmitBtn.style.opacity = '1';
-        guestbookForm.reset();
-        setMessageStatus('success', '축하 메시지를 전송했어요. 소중한 마음 감사합니다.');
-      }, 1200);
+        try {
+          guestbookForm.submit();
+        } catch (error) {
+          finishSubmissionError('메세지 전송 중 문제가 발생했어요. 잠시 후 다시 시도해주세요.');
+        }
+      }, 120);
     });
 
-    prankTriggers.forEach((btn) => btn.addEventListener('click', openPrank));
-    closeModalBtn.addEventListener('click', () => {
-      prankModal.classList.remove('show');
-      prankModal.setAttribute('aria-hidden', 'true');
-    });
-    prankModal.addEventListener('click', (e) => {
-      if (e.target === prankModal) {
-        prankModal.classList.remove('show');
-        prankModal.setAttribute('aria-hidden', 'true');
+    closeModalBtn.addEventListener('click', closePrankModal);
+    prankModal.addEventListener('click', (event) => {
+      if (event.target === prankModal) {
+        closePrankModal();
       }
     });
   </script>
